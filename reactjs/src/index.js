@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 // import App from "./App";
+import StateLessComponent from "./component/StateLessComponent";
+import StateFullComponent from "./container/StateFullComponent";
 import reportWebVitals from "./reportWebVitals";
 
 const HelloWorld = () => {
@@ -12,6 +14,10 @@ ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
     <HelloWorld />
+
+    <StateLessComponent />
+
+    <StateFullComponent />
   </React.StrictMode>,
   document.getElementById("root")
 );
