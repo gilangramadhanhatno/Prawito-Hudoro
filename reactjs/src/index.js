@@ -6,6 +6,8 @@ import StateLessComponent from "./component/StateLessComponent";
 import StateFullComponent from "./container/StateFullComponent";
 import reportWebVitals from "./reportWebVitals";
 
+import Home from "./container/Home/Home";
+
 const HelloWorld = () => {
   return <h2>Hello World</h2>;
 };
@@ -18,6 +20,8 @@ ReactDOM.render(
     <StateLessComponent />
 
     <StateFullComponent />
+
+    <Home />
   </React.StrictMode>,
   document.getElementById("root")
 );
