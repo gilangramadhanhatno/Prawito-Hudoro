@@ -15,11 +15,11 @@ const HelloWorld = () => {
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
-    <HelloWorld />
+    {/* <HelloWorld />
 
     <StateLessComponent />
 
-    <StateFullComponent />
+    <StateFullComponent /> */}
 
     <Home />
   </React.StrictMode>,
