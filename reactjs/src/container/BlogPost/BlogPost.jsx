@@ -28,7 +28,7 @@ export default class BlogPost extends Component {
     //     });
     //   });
 
-    // Pemanggilan API(GET, Fake API, Real time) menggunakan fetch
+    // Pemanggilan API(GET, Fake API, Real time) menggunakan axios
     axios.get("http://localhost:3004/posts").then((res) => {
       this.setState({
         post: res.data,
