@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Post from "../../component/Post/Post";
 
-import axios from "axios";
+// import axios from "axios";
 
 import "./BlogPost.css";
 
@@ -12,12 +12,21 @@ export default class BlogPost extends Component {
   };
 
   componentDidMount() {
-    // Pemanggilan API menggunakan axios
-    axios.get("http://jsonplaceholder.typicode.com/posts").then((res) => {
-      this.setState({
-        post: res.data,
+    // Pemanggilan API(GET) menggunakan axios
+    // axios.get("http://jsonplaceholder.typicode.com/posts").then((res) => {
+    //   this.setState({
+    //     post: res.data,
+    //   });
+    // });
+
+    // Pemanggilan API(GET) menggunakan fetch
+    fetch("http://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({
+          post: json,
+        });
       });
-    });
   }
 
   render() {
