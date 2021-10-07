@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 // import App from "./App";
-import StateLessComponent from "./component/StateLessComponent";
-import StateFullComponent from "./container/StateFullComponent";
+// import StateLessComponent from "./component/StateLessComponent";
+// import StateFullComponent from "./container/StateFullComponent";
 import reportWebVitals from "./reportWebVitals";
 
 import Home from "./container/Home/Home";
 
-const HelloWorld = () => {
-  return <h2>Hello World</h2>;
-};
+// const HelloWorld = () => {
+//   return <h2>Hello World</h2>;
+// };
 
 ReactDOM.render(
   <React.StrictMode>

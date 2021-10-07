@@ -1,8 +1,21 @@
 import React, { Component } from "react";
 // import YoutubeComp from "../../component/YoutubeComp/YoutubeComp";
-import Product from "../Product/Product";
+// import Product from "../Product/Product";
+import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
 
 export default class Home extends Component {
+  state = {
+    showComponent: true,
+  };
+
+  componentDidMount() {
+    // setTimeout(() => {
+    //   this.setState({
+    //     showComponent: false,
+    //   });
+    // }, 5000);
+  }
+
   render() {
     return (
       <>
@@ -15,7 +28,9 @@ export default class Home extends Component {
         <YoutubeComp time="20.43" title="Tutorial Belajar React JS - Bagian 4" desc="56kx ditonton, 14 hari yang lalu" />
         <YoutubeComp /> */}
 
-        <Product />
+        {/* <Product /> */}
+
+        {this.state.showComponent ? <LifeCycleComp /> : null}
       </>
     );
   }
