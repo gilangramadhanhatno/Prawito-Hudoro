@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-// import YoutubeComp from "../../component/YoutubeComp/YoutubeComp";
-// import Product from "../Product/Product";
-// import LifeCycleComp from "../LifeCycleComp/LifeCycleComp";
-import BlogPost from "../BlogPost/BlogPost";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import BlogPost from "../pages/BlogPost/BlogPost";
+import Product from "../pages/Product/Product";
+import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
+import YouTubeCompPage from "../pages/YouTubeCompPage/YouTubeCompPage";
+
+import "./Home.css";
 
 export default class Home extends Component {
   state = {
@@ -20,27 +24,21 @@ export default class Home extends Component {
   render() {
     return (
       <>
-        {/* <hr />
-        <p>Youtube Component</p>
-        <hr />
-        <YoutubeComp time="7.12" title="Tutorial Belajar React JS - Bagian 1" desc=" 2x ditonton, 2 hari yang lalu" />
-        <YoutubeComp time="8.32" title="Tutorial Belajar React JS - Bagian 2" desc="132x ditonton, 5 hari yang lalu" />
-        <YoutubeComp time="12.54" title="Tutorial Belajar React JS - Bagian 3" desc="2kx ditonton, 6 hari yang lalu" />
-        <YoutubeComp time="20.43" title="Tutorial Belajar React JS - Bagian 4" desc="56kx ditonton, 14 hari yang lalu" />
-        <YoutubeComp /> */}
-
-        {/* <Product /> */}
-
         {/* {this.state.showComponent ? <LifeCycleComp /> : null} */}
 
-        <BlogPost />
+        <Router>
+          <div className="navigation">
+            <Link to="/">Blog Post</Link>
+            <Link to="/product">Product</Link>
+            <Link to="/lifecycle">LifeCycle</Link>
+            <Link to="/youtube-component">YouTube</Link>
+          </div>
+          <Route path="/" exact component={BlogPost} />
+          <Route path="/product" component={Product} />
+          <Route path="/lifecycle" component={LifeCycleComp} />
+          <Route path="/youtube-component" component={YouTubeCompPage} />
+        </Router>
       </>
     );
   }
 }
-
-// YoutubeComp.defaultProps = {
-//   time: "00.00",
-//   title: "Title Here",
-//   desc: "x ditonton, x hari yang lalu",
-// };
