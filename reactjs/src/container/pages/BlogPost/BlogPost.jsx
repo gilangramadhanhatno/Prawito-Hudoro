@@ -100,6 +100,10 @@ export default class BlogPost extends Component {
     }
   };
 
+  handleDetail = (id) => {
+    this.props.history.push(`/detail-post/${id}`);
+  };
+
   componentDidMount() {
     // Pemanggilan API(GET) menggunakan axios
     // axios.get("http://jsonplaceholder.typicode.com/posts").then((res) => {
@@ -142,7 +146,7 @@ export default class BlogPost extends Component {
           </button>
         </div>
         {this.state.post.map((post) => {
-          return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} />;
+          return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} goDetail={this.handleDetail} />;
         })}
       </>
     );

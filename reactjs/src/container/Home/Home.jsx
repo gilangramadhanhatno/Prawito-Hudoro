@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import BlogPost from "../pages/BlogPost/BlogPost";
+import DetailPost from "../pages/BlogPost/DetailPost/DetailPost";
 import Product from "../pages/Product/Product";
 import LifeCycleComp from "../pages/LifeCycleComp/LifeCycleComp";
 import YouTubeCompPage from "../pages/YouTubeCompPage/YouTubeCompPage";
@@ -34,6 +35,7 @@ export default class Home extends Component {
             <Link to="/youtube-component">YouTube</Link>
           </div>
           <Route path="/" exact component={BlogPost} />
+          <Route path="/detail-post/:id" component={DetailPost} />
           <Route path="/product" component={Product} />
           <Route path="/lifecycle" component={LifeCycleComp} />
           <Route path="/youtube-component" component={YouTubeCompPage} />
