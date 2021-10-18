@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 
 import "./LifeCycleComp.css";
-import { connect } from "react-redux";
+
+// State Management menggunakan Redux
+// import { connect } from "react-redux";
+
+// State Management menggunakan Context API
+import { RootContext } from "../../Home/Home";
 
 class LifeCycleComp extends Component {
   constructor(props) {
@@ -57,23 +62,33 @@ class LifeCycleComp extends Component {
   render() {
     console.log("render");
     return (
-      <>
-        <h2>LifeCycle Component</h2>
-        <button className="btn" onClick={this.changeCount}>
-          Component Button {this.state.count}
-        </button>
+      <RootContext.Consumer>
+        {(value) => {
+          return (
+            <>
+              <h2>LifeCycle Component</h2>
+              <button className="btn" onClick={this.changeCount}>
+                Component Button {this.state.count}
+              </button>
 
-        <hr />
-        <p>Total Order: {this.props.order}</p>
-      </>
+              <hr />
+              <p>Total Order: {value.state.totalOrder}</p>
+            </>
+          );
+        }}
+      </RootContext.Consumer>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    order: state.totalOrder,
-  };
-};
+// State Management menggunakan Redux
+// const mapStateToProps = (state) => {
+//   return {
+//     order: state.totalOrder,
+//   };
+// };
 
-export default connect(mapStateToProps)(LifeCycleComp);
+// export default connect(mapStateToProps)(LifeCycleComp);
+
+// State Management menggunakan Context API
+export default LifeCycleComp;

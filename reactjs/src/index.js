@@ -8,17 +8,18 @@ import reportWebVitals from "./reportWebVitals";
 
 import Home from "./container/Home/Home";
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-
-import rootReducer from "./redux/reducer/globalReducer";
+// State Management menggunakan Redux
+// import { createStore } from "redux";
+// import { Provider } from "react-redux";
+// import rootReducer from "./redux/reducer/globalReducer";
 
 // const HelloWorld = () => {
 //   return <h2>Hello World</h2>;
 // };
 
+// State Management menggunakan Redux
 // Store
-const storeRedux = createStore(rootReducer);
+// const storeRedux = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,9 +30,13 @@ ReactDOM.render(
 
     <StateFullComponent /> */}
 
-    <Provider store={storeRedux}>
+    {/* State Management menggunakan Redux */}
+    {/* <Provider store={storeRedux}>
       <Home />
-    </Provider>
+    </Provider> */}
+
+    {/* State Management menggunakan Context API */}
+    <Home />
   </React.StrictMode>,
   document.getElementById("root")
 );

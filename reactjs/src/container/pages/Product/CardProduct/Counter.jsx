@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import ActionType from "../../../../redux/reducer/globalActionType";
+
+// State Management menggunakan Redux
+// import { connect } from "react-redux";
+// import ActionType from "../../../../redux/reducer/globalActionType";
+
+// State Management menggunakan Context API
+import { RootContext } from "../../../Home/Home";
 
 class Counter extends Component {
   //   state = {
@@ -37,30 +42,41 @@ class Counter extends Component {
 
   render() {
     return (
-      <div className="counter">
-        <button className="minus" onClick={this.props.handleMinus}>
-          -
-        </button>
-        <input type="text" value={this.props.order} />
-        <button className="plus" onClick={this.props.handlePlus}>
-          +
-        </button>
-      </div>
+      <RootContext.Consumer>
+        {(value) => {
+          console.log("value: ", value);
+          return (
+            <div className="counter">
+              <button className="minus" onClick={() => value.dispatch({ type: "MINUS_ORDER" })}>
+                -
+              </button>
+              <input type="text" value={value.state.totalOrder} />
+              <button className="plus" onClick={() => value.dispatch({ type: "PLUS_ORDER" })}>
+                +
+              </button>
+            </div>
+          );
+        }}
+      </RootContext.Consumer>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    order: state.totalOrder,
-  };
-};
+// State Management menggunakan Redux
+// const mapStateToProps = (state) => {
+//   return {
+//     order: state.totalOrder,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handlePlus: () => dispatch({ type: ActionType.PLUS_ORDER }),
-    handleMinus: () => dispatch({ type: ActionType.MINUS_ORDER }),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     handlePlus: () => dispatch({ type: ActionType.PLUS_ORDER }),
+//     handleMinus: () => dispatch({ type: ActionType.MINUS_ORDER }),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+// export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+// State Management menggunakan Context API
+export default Counter;
