@@ -7,10 +7,38 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 import Home from "./container/Home/Home";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
 // const HelloWorld = () => {
 //   return <h2>Hello World</h2>;
 // };
+
+const globalState = {
+  totalOrder: 1,
+};
+
+// Reducer
+const rootReducer = (state = globalState, action) => {
+  if (action.type === "PLUS_ORDER") {
+    return {
+      ...state,
+      totalOrder: state.totalOrder + 1,
+    };
+  }
+  if (action.type === "MINUS_ORDER") {
+    if (state.totalOrder > 0) {
+      return {
+        ...state,
+        totalOrder: state.totalOrder - 1,
+      };
+    }
+  }
+  return state;
+};
+
+// Store
+const storeRedux = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,7 +49,9 @@ ReactDOM.render(
 
     <StateFullComponent /> */}
 
-    <Home />
+    <Provider store={storeRedux}>
+      <Home />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

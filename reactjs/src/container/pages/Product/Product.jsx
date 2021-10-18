@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import CardProduct from "./CardProduct/CardProduct";
 import "./Product.css";
+import { connect } from "react-redux";
 
-export default class Product extends Component {
-  state = {
-    order: 1,
-  };
+class Product extends Component {
+  // state = {
+  //   order: 1,
+  // };
 
-  handleCounterChange = (newValue) => {
-    this.setState({
-      order: newValue,
-    });
-  };
+  // handleCounterChange = (newValue) => {
+  //   this.setState({
+  //     order: newValue,
+  //   });
+  // };
 
   render() {
     return (
@@ -22,11 +23,19 @@ export default class Product extends Component {
           </div>
           <div className="troley">
             <img src="https://tse3.mm.bing.net/th?id=OIP.7pjvALQDTUkfhY_hwjx0MQHaHa&pid=Api&P=0&w=300&h=300" alt="" />
-            <div className="count">{this.state.order}</div>
+            <div className="count">{this.props.order}</div>
           </div>
         </div>
-        <CardProduct onCounterChange={(value) => this.handleCounterChange(value)} />
+        <CardProduct />
       </>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    order: state.totalOrder,
+  };
+};
+
+export default connect(mapStateToProps)(Product);
