@@ -6,7 +6,10 @@ import "./Product.css";
 // import { connect } from "react-redux";
 
 // State Management menggunakan Context API
-import { RootContext } from "../../Home/Home";
+// import { RootContext } from "../../Home/Home";
+
+// State Management menggunakan Context API setelah direfactoring
+import { GlobalConsumer } from "../../../context/context";
 
 class Product extends Component {
   // state = {
@@ -21,24 +24,18 @@ class Product extends Component {
 
   render() {
     return (
-      <RootContext.Consumer>
-        {(value) => {
-          return (
-            <>
-              <div className="header">
-                <div className="logo">
-                  <img src="https://tse4.mm.bing.net/th?id=OIP.ky_DKQqXwpa1zJ1E6q6XlgHaCv&pid=Api&P=0&w=418&h=155" alt="" />
-                </div>
-                <div className="troley">
-                  <img src="https://tse3.mm.bing.net/th?id=OIP.7pjvALQDTUkfhY_hwjx0MQHaHa&pid=Api&P=0&w=300&h=300" alt="" />
-                  <div className="count">{value.state.totalOrder}</div>
-                </div>
-              </div>
-              <CardProduct />
-            </>
-          );
-        }}
-      </RootContext.Consumer>
+      <>
+        <div className="header">
+          <div className="logo">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.ky_DKQqXwpa1zJ1E6q6XlgHaCv&pid=Api&P=0&w=418&h=155" alt="" />
+          </div>
+          <div className="troley">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.7pjvALQDTUkfhY_hwjx0MQHaHa&pid=Api&P=0&w=300&h=300" alt="" />
+            <div className="count">{this.props.state.totalOrder}</div>
+          </div>
+        </div>
+        <CardProduct />
+      </>
     );
   }
 }
@@ -53,4 +50,4 @@ class Product extends Component {
 // export default connect(mapStateToProps)(Product);
 
 // State Management menggunakan Context API
-export default Product;
+export default GlobalConsumer(Product);

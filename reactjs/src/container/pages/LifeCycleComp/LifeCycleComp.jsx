@@ -6,7 +6,10 @@ import "./LifeCycleComp.css";
 // import { connect } from "react-redux";
 
 // State Management menggunakan Context API
-import { RootContext } from "../../Home/Home";
+// import { RootContext } from "../../Home/Home";
+
+// State Management menggunakan Context API setelah direfactoring
+import { GlobalConsumer } from "../../../context/context";
 
 class LifeCycleComp extends Component {
   constructor(props) {
@@ -62,21 +65,15 @@ class LifeCycleComp extends Component {
   render() {
     console.log("render");
     return (
-      <RootContext.Consumer>
-        {(value) => {
-          return (
-            <>
-              <h2>LifeCycle Component</h2>
-              <button className="btn" onClick={this.changeCount}>
-                Component Button {this.state.count}
-              </button>
+      <>
+        <h2>LifeCycle Component</h2>
+        <button className="btn" onClick={this.changeCount}>
+          Component Button {this.state.count}
+        </button>
 
-              <hr />
-              <p>Total Order: {value.state.totalOrder}</p>
-            </>
-          );
-        }}
-      </RootContext.Consumer>
+        <hr />
+        <p>Total Order: {this.props.state.totalOrder}</p>
+      </>
     );
   }
 }
@@ -91,4 +88,4 @@ class LifeCycleComp extends Component {
 // export default connect(mapStateToProps)(LifeCycleComp);
 
 // State Management menggunakan Context API
-export default LifeCycleComp;
+export default GlobalConsumer(LifeCycleComp);
