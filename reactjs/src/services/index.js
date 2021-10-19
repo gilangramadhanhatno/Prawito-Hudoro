@@ -31,8 +31,25 @@ const Post = (path, root, data) => {
   return promise;
 };
 
+const Put = (path, root, data) => {
+  const promise = new Promise((resolve, reject) => {
+    axios.put(`${root ? OnlineRoot : RootPath}/${path}`, data).then(
+      (result) => {
+        resolve(result);
+      },
+      (err) => {
+        reject(err);
+      }
+    );
+  });
+  return promise;
+};
+
 // POST
 const postNewsBlog = (data) => Post("posts", false, data);
+
+// PUT
+const updateNewsBlog = (data, id) => Put(`posts/${id}`, false, data);
 
 // GET
 const getNewsBlog = () => Get("posts?_sort=id&_order=desc", false);
@@ -40,6 +57,7 @@ const getComments = () => Get("comments", true);
 
 const API = {
   postNewsBlog,
+  updateNewsBlog,
   getNewsBlog,
   getComments,
 };
