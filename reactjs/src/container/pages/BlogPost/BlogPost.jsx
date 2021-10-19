@@ -62,7 +62,7 @@ export default class BlogPost extends Component {
   };
 
   handleRemove = (data) => {
-    axios.delete(`http://localhost:3004/posts/${data}`).then((res) => {
+    API.deleteNewsBlog(data).then((res) => {
       this.getPostAPI();
     });
   };
