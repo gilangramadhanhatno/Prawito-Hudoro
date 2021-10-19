@@ -5,6 +5,7 @@ import Post from "../../../component/Post/Post";
 import axios from "axios";
 
 import "./BlogPost.css";
+import API from "../../../services";
 
 export default class BlogPost extends Component {
   state = {
@@ -16,12 +17,18 @@ export default class BlogPost extends Component {
       userId: 1,
     },
     isUpdate: false,
+    comments: [],
   };
 
   getPostAPI = () => {
-    axios.get("http://localhost:3004/posts?_sort=id&_order=desc").then((res) => {
+    API.getNewsBlog().then((result) => {
       this.setState({
-        post: res.data,
+        post: result,
+      });
+    });
+    API.getComments().then((result) => {
+      this.setState({
+        comments: result,
       });
     });
   };
@@ -145,6 +152,15 @@ export default class BlogPost extends Component {
             Simpan
           </button>
         </div>
+        <hr />
+        {this.state.comments.map((comment) => {
+          return (
+            <p>
+              {comment.name} - {comment.email}
+            </p>
+          );
+        })}
+        <hr />
         {this.state.post.map((post) => {
           return <Post key={post.id} data={post} remove={this.handleRemove} update={this.handleUpdate} goDetail={this.handleDetail} />;
         })}
