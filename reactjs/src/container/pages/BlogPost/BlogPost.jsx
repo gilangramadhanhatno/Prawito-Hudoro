@@ -2,9 +2,8 @@ import React, { Component } from "react";
 
 import Post from "../../../component/Post/Post";
 
-import axios from "axios";
-
 import "./BlogPost.css";
+
 import API from "../../../services";
 
 export default class BlogPost extends Component {
