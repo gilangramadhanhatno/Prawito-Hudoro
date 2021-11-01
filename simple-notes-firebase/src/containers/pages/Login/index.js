@@ -6,7 +6,8 @@ class Login extends Component {
     return (
       <div>
         <h2>Login Page {this.props.popup}</h2>
-        <button>Go to Regiter</button>
+
+        <button>Go to Register</button>
         <button>Go to Dashboard</button>
       </div>
     );

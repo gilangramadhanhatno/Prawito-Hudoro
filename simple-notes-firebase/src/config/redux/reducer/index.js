@@ -1,5 +1,5 @@
 const initialState = {
-  popup: "false",
+  popup: false,
   isLogin: false,
 };
 

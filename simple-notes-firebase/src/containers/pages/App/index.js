@@ -7,8 +7,8 @@ import Register from "../Register";
 import Login from "../Login";
 
 import "./App.css";
-import { Provider } from "react-redux";
 
+import { Provider } from "react-redux";
 import { store } from "../../../config/redux";
 
 function App() {
