@@ -6,16 +6,20 @@ import Dashboard from "../Dashboard";
 import Register from "../Register";
 import Login from "../Login";
 
-// import logo from "../../../assets/img/logo/logo.svg";
 import "./App.css";
+import { Provider } from "react-redux";
+
+import { store } from "../../../config/redux";
 
 function App() {
   return (
-    <Router>
-      <Route path="/" exact component={Dashboard} />
-      <Route path="/register" component={Register} />
-      <Route path="/login" component={Login} />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Route path="/" exact component={Dashboard} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+      </Router>
+    </Provider>
   );
 }
 
