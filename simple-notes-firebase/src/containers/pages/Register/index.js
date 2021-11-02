@@ -23,6 +23,12 @@ class Register extends Component {
   handleRegiterSubmit = () => {
     const { email, password } = this.state;
     this.props.registerAPI({ email, password });
+    setTimeout(() => {
+      this.setState({
+        email: "",
+        password: "",
+      });
+    }, 1500);
   };
 
   render() {
@@ -30,8 +36,8 @@ class Register extends Component {
       <div className="container">
         <div className="card">
           <p className="title">Register Page</p>
-          <input className="input" id="email" type="text" placeholder="Email" onChange={this.handleChangeText} />
-          <input className="input" id="password" type="password" placeholder="Password" onChange={this.handleChangeText} />
+          <input className="input" id="email" type="text" placeholder="Email" onChange={this.handleChangeText} value={this.state.email} />
+          <input className="input" id="password" type="password" placeholder="Password" onChange={this.handleChangeText} value={this.state.password} />
           <Button onClick={this.handleRegiterSubmit} title="Register" loading={this.props.isLoading} />
         </div>
       </div>
