@@ -20,15 +20,17 @@ class Register extends Component {
     });
   };
 
-  handleRegiterSubmit = () => {
+  handleRegiterSubmit = async () => {
     const { email, password } = this.state;
-    this.props.registerAPI({ email, password });
-    setTimeout(() => {
+    const { history } = this.props;
+    const res = await this.props.registerAPI({ email, password }).catch((err) => err);
+    if (res) {
       this.setState({
         email: "",
         password: "",
       });
-    }, 1500);
+      history.push("/login");
+    }
   };
 
   render() {

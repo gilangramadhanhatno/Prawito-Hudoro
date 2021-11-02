@@ -1,31 +1,59 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { actionUserName } from "../../../config/redux/action";
+
+import Button from "../../../components/atoms/Button";
+
+import { loginUserAPI } from "../../../config/redux/action";
 
 class Login extends Component {
-  changeUser = () => {
-    this.props.changeUserName();
+  state = {
+    email: "",
+    password: "",
+  };
+
+  handleChangeText = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  handleLoginSubmit = async () => {
+    const { email, password } = this.state;
+    const { history } = this.props;
+
+    const res = await this.props.loginAPI({ email, password }).catch((err) => err);
+    if (res) {
+      console.log("login success");
+      this.setState({
+        email: "",
+        password: "",
+      });
+      history.push("/");
+    } else {
+      console.log("login failed");
+    }
   };
 
   render() {
     return (
-      <div>
-        <h2>Login Page {this.props.user}</h2>
-
-        <button onClick={this.changeUser}>Change UserName</button>
-        <button>Go to Dashboard</button>
+      <div className="container">
+        <div className="card">
+          <p className="title">Login Page</p>
+          <input className="input" id="email" type="text" placeholder="Email" onChange={this.handleChangeText} value={this.state.email} />
+          <input className="input" id="password" type="password" placeholder="Password" onChange={this.handleChangeText} value={this.state.password} />
+          <Button onClick={this.handleLoginSubmit} title="Login" loading={this.props.isLoading} />
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  popup: state.popup,
-  user: state.user,
+const reduxState = (state) => ({
+  isLoading: state.isLoading,
 });
 
 const reduxDispatch = (dispatch) => ({
-  changeUserName: () => dispatch(actionUserName()),
+  loginAPI: (data) => dispatch(loginUserAPI(data)),
 });
 
-export default connect(mapStateToProps, reduxDispatch)(Login);
+export default connect(reduxState, reduxDispatch)(Login);
