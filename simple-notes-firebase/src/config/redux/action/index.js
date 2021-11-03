@@ -1,4 +1,4 @@
-import firebase from "../../firebase";
+import firebase, { database } from "../../firebase";
 
 // Sama aja seperti yg dibawah
 // export const actionUserName = () => {
@@ -48,11 +48,12 @@ export const loginUserAPI = (data) => (dispatch) => {
           email: res.user.email,
           uid: res.user.uid,
           emailVerified: res.user.emailVerified,
+          refreshToken: res.user.refreshToken,
         };
         dispatch({ type: "CHANGE_LOADING", value: false });
         dispatch({ type: "CHANGE_ISLOGIN", value: true });
         dispatch({ type: "CHANGE_USER", value: dataUser });
-        resolve(true);
+        resolve(dataUser);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -62,5 +63,13 @@ export const loginUserAPI = (data) => (dispatch) => {
         dispatch({ type: "CHANGE_ISLOGIN", value: false });
         reject(false);
       });
+  });
+};
+
+export const addDataToAPI = (data) => (dispatch) => {
+  database.ref(`notes/${data.userId}`).push({
+    title: data.title,
+    content: data.content,
+    date: data.date,
   });
 };

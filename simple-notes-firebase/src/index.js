@@ -5,7 +5,7 @@ import App from "./containers/pages/App";
 import reportWebVitals from "./reportWebVitals";
 import firebase from "./config/firebase/index";
 
-console.log("config firebase ==> ", firebase);
+// console.log("config firebase ==> ", firebase);
 
 ReactDOM.render(
   <React.StrictMode>
